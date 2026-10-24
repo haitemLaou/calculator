@@ -1,0 +1,98 @@
+body {
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    overflow: hidden; /* Prevents scrolling on the page */
+}
+
+.calculator {
+    width: 300px; /* Reduced width */
+    height: 580px; /* Reduced height */
+    max-height: 95vh; /* Ensures it never exceeds screen height */
+    background-color: #e8e8e8;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px; /* Slightly reduced padding */
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden; /* Prevents scrolling inside the calculator */
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+#mode-toggle {
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    line-height: 1.1;
+}
+
+.display {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 15px;
+    overflow: hidden;
+}
+
+#expression {
+    font-size: 38px; /* Smaller font size to fit constraints */
+    color: #111;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+#result {
+    font-size: 22px; /* Smaller font size */
+    color: #777;
+    min-height: 26px;
+    margin-top: 5px;
+}
+
+.buttons {
+    display: grid;
+    gap: 8px; /* Reduced gap between buttons */
+}
+
+.buttons.standard-mode {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.buttons.scientific-mode {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+button.key {
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px; /* Smaller button font */
+    color: #111;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+    padding: 0;
+}
+
+button.key:active { background-color: #c0c0c0; }
+button.key.operator { background-color: #d0d0d0; }
+button.key.equals { background-color: #ff6b00; color: white; }
+button.key.sci { background-color: #e0e0e0; font-size: 15px; } /* Smaller font for sci mode */
+button.key.active-mode { color: #ff6b00; }
