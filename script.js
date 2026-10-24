@@ -45,14 +45,23 @@ function renderKeys() {
 }
 
 function updateDisplay() {
+    // Show the clean user-friendly expression on screen
     expressionDiv.textContent = currentExpression;
+    
     try {
+        // Translate the clean symbols into JavaScript code for evaluation
         let evalStr = currentExpression
             .replace(/×/g, '*')
             .replace(/÷/g, '/')
             .replace(/π/g, 'Math.PI')
             .replace(/e/g, 'Math.E')
-            .replace(/\^/g, '**');
+            .replace(/\^/g, '**')
+            .replace(/√\(/g, 'Math.sqrt(')
+            .replace(/sin\(/g, 'Math.sin(')
+            .replace(/cos\(/g, 'Math.cos(')
+            .replace(/tan\(/g, 'Math.tan(')
+            .replace(/log\(/g, 'Math.log10(') 
+            .replace(/ln\(/g, 'Math.log(');
 
         if (evalStr === '') {
             resultDiv.textContent = '';
@@ -75,10 +84,12 @@ function handleInput(key) {
     } else if (key === '=') {
         currentExpression = resultDiv.textContent.replace(/,/g, ''); 
         resultDiv.textContent = '';
-    } else if (key === 'sin' || key === 'cos' || key === 'tan' || key === 'log') {
-        currentExpression += `Math.${key}(`;
+    } else if (key === 'sin' || key === 'cos' || key === 'tan' || key === 'log' || key === 'ln') {
+        // Appends neat symbols to display instead of JS code
+        currentExpression += `${key}(`;
     } else if (key === '√') {
-        currentExpression += 'Math.sqrt(';
+        // Appends the root symbol to display instead of Math.sqrt(
+        currentExpression += '√(';
     } else {
         currentExpression += key;
     }
